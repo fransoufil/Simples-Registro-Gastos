@@ -5,12 +5,24 @@
  */
 package simplesregistrogastos.view;
 
+import java.sql.Connection;
+import simplesregistrogastos.dao.ConexaoMySQL;
+
 
 public class TelaLogin extends javax.swing.JFrame {
 
+    Connection conexao = null;
     
     public TelaLogin() {
         initComponents();
+        
+        conexao = ConexaoMySQL.conector();
+        
+        if (conexao != null) {
+            lblStatus.setIcon((new javax.swing.ImageIcon(getClass().getResource("/simplesregistrogastos/images/dbok.png"))));
+        } else {
+            lblStatus.setIcon((new javax.swing.ImageIcon(getClass().getResource("/simplesregistrogastos/images/dberror.png"))));
+        }
     }
 
     
@@ -26,7 +38,7 @@ public class TelaLogin extends javax.swing.JFrame {
         pasSenha = new javax.swing.JPasswordField();
         btnLogin = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        lblStatus = new javax.swing.JLabel();
         btnSair = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -66,7 +78,7 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(0, 0, 204));
         jLabel4.setText("--------------------------------------------------------------------------------");
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/simplesregistrogastos/images/dberror.png"))); // NOI18N
+        lblStatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/simplesregistrogastos/images/dberror.png"))); // NOI18N
 
         btnSair.setBackground(new java.awt.Color(255, 0, 0));
         btnSair.setFont(new java.awt.Font("Tahoma", 0, 5)); // NOI18N
@@ -93,7 +105,7 @@ public class TelaLogin extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
-                            .addComponent(jLabel5))
+                            .addComponent(lblStatus))
                         .addGap(37, 37, 37)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(pasSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -124,7 +136,7 @@ public class TelaLogin extends javax.swing.JFrame {
                         .addGap(28, 28, 28)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5))
+                            .addComponent(lblStatus))
                         .addContainerGap(31, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -204,8 +216,8 @@ public class TelaLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblStatus;
     private javax.swing.JPasswordField pasSenha;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables

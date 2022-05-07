@@ -14,8 +14,8 @@ public class ConexaoMySQL {
         
         String driver = "com.mysql.jdbc.Driver";
         String url = "jdbc:mysql://localhost:3306/db_simples_registro_gastos?useSSL=false";
-        String user = "coloqueaquioseuuser";
-        String password = "coloqueaquiasuasenha";
+        String user = "root";
+        String password = "root";
         
         try {
             Class.forName(driver);
